@@ -1,6 +1,7 @@
 <style>
 .item-btn{
     margin-top:5px;
+    margin-right:5px;
 }
 </style>
 <!--CONTENT CONTAINER-->
@@ -58,8 +59,8 @@
 
                         <!--Extra Large-->
                         <!--===================================================-->
-                        <div class="list-group">
-                            <a class="list-group-item list-item-xl" href="#"><b class="list-group-item-heading">Category 1</b></a>
+                        <div class="list-group" id="cat_list">
+                            <a class="list-group-item list-item-xl" href="#"><b class="list-group-item-heading">Category 1</b><span class="badge badge-primary"><i class="fa fa-angle-double-right"></i></span></a>
                             <a class="list-group-item list-item-xl" href="#"><b class="list-group-item-heading">Category 2</b></a>
                             <a class="list-group-item list-item-xl" href="#"><b class="list-group-item-heading">Category 3</b></a>
                             <a class="list-group-item list-item-xl" href="#"><b class="list-group-item-heading">Category 4</b></a>
@@ -85,7 +86,7 @@
                         <h3 class="panel-title">Items</h3>
                     </div>
                     <div class="panel-body">
-                        <p>
+                        <p id="item_list">
                         <button class="btn btn-lg btn-default item-btn" data-toggle="modal" data-target="#itemModal">Item 1</button>
                         <button class="btn btn-lg btn-default item-btn">Item 2</button>
                         <button class="btn btn-lg btn-default item-btn">Item 3</button>
@@ -173,21 +174,22 @@
                                     <input id="item_qty" type="number" class="form-control">
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="control-label">Price Group</label>
-                                    <div style="margin-left:20px;">
-                                        <div class="radio">
+                                    <div style="margin-left:20px;" id="price_cat_list">
+                                        <div class="radio" hidden>
                                             <input id="demo-form-radio" class="magic-radio" type="radio" name="price_group" value="1200.00">
                                             <label for="demo-form-radio">Group 1</label>
                                         </div>
-                                        <div class="radio">
+                                        <div class="radio" hidden>
                                             <input id="demo-form-radio2" class="magic-radio" type="radio" name="price_group" value="1250.00">
                                             <label for="demo-form-radio2">Group 2</label>
                                         </div>
-                                        <div class="radio">
+                                        <div class="radio" hidden>
                                             <input id="demo-form-radio3" class="magic-radio" type="radio" name="price_group" value="1400.00">
                                             <label for="demo-form-radio3">Group 3</label>
                                         </div>
@@ -195,9 +197,15 @@
                                     
                                 </div>
                             </div>
-                            <div class="col-sm-6 text-center align-self-center">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <h2>Rs.<span id="item_price">0000.00</span></h2>
+                                    
+                                    <label class="control-label" for="item_qty">Price &nbsp;</label>
+                                    <input id="custom_price_switch" type="checkbox">
+                                    <input id="item_price_txt" type="number" class="form-control text-right" placeholder="Rs.0000.00">
+                                </div>
+                                <div class="form-group text-right align-self-center">
+                                    <h2>Rs.<span id="item_price_lbl">0000.00</span></h2>
                                 </div>
                             </div>
                         </div>

@@ -20,6 +20,9 @@
     <link href='<?php echo base_url("assets/css/demo/nifty-demo-icons.min.css"); ?>' rel="stylesheet">
     <!--Font Awesome-->
     <link href='<?php echo base_url("assets/plugins/font-awesome/css/font-awesome.min.css"); ?>' rel="stylesheet">
+    <!--Switchery [ OPTIONAL ]-->
+    <link href='<?php echo base_url("assets/plugins/switchery/switchery.min.css"); ?>' rel="stylesheet">
+
     <!--=================================================-->
    
 </head>

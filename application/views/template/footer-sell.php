@@ -42,12 +42,17 @@
     <script src='<?php echo base_url("assets/js/bootstrap.min.js"); ?>' ></script>
     <!--NiftyJS [ RECOMMENDED ]-->
     <script src='<?php echo base_url("assets/js/nifty.min.js");?>' ></script>
+    <!--Switchery [ OPTIONAL ]-->
+    <script src='<?php echo base_url("assets/plugins/switchery/switchery.min.js"); ?>' ></script>
+
     <!--=================================================-->
 
 </body>
 
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('#cat_list').load("<?php echo site_url('pos/load_cat');?>");
       $('#add_cart').click(function(){
           //var product_id    = $(this).data("productid");
           var product_id    = $('#item_id').val();
@@ -117,10 +122,78 @@
         });
       });
 
+      //Custom Price Switch
+      var custom_price_switch = document.getElementById('custom_price_switch');
+      new Switchery(custom_price_switch);
+      $('#item_price_txt').prop('readonly', true);
+      custom_price_switch.onchange = function() {
+        if(custom_price_switch.checked){
+            $('#item_price_txt').prop('readonly', false);
+            $('input[type=radio][name=price_group]').prop('disabled', true && 'checked', false)
+        }else{
+            $('#item_price_txt').prop('readonly', true);
+            $('input[type=radio][name=price_group]').prop('disabled', false && 'checked', false)
+        }
+      }
+
       $('input[type=radio][name=price_group]').change(function(){
         var price_value = $('input[type=radio][name=price_group]:checked').val();
-        $('#item_price').text(price_value);
+        $('#item_price_txt').val(price_value);
+        $('#item_price_lbl').text($('#item_price_txt').val());
       })
+
+      $('#item_price_txt').change(function(){
+        $('#item_price_lbl').text($('#item_price_txt').val());
+      })
+
+      //Load Items
+      $(document).on('click','.item_cat', function(e){
+        e.preventDefault();
+        var cat_id = $(this).data("cat_id");
+        //alert(cat_id);
+        //$('#item_list').load("<?php echo site_url('pos/load_item');?>");
+        $.ajax({
+              url : "<?php echo site_url('pos/load_item');?>",
+              method : "GET",
+              data : {cat_id: cat_id},
+              success: function(data){
+                  $('#item_list').html(data);
+              }
+          });
+      })
+
+      $(document).on('click','.item-btn', function(){
+        var item_id = $(this).data("item_id");
+        $.ajax({
+            url : "<?php echo site_url('pos/item_details');?>",
+            method : "GET",
+            data : {item_id: item_id},
+            success: function(data){
+                //$('#item_list').html(data);
+                var details = $.parseJSON(data);
+                //alert(details['item_price']);
+                $('#item_price_txt').val(details['item_details']['item_price']);
+                $('#item_price_lbl').text(details['item_details']['item_price']);
+
+                for(var i in details['price_cat']){
+                    $('<div class="radio"><input type="radio" name="price_group" class="magic-radio" value="'+ details["price_cat"][i]["price"] +'" id="'+ details["price_cat"][i]["price_cat_id"] +'" /><label for="'+ details["price_cat"][i]["price_cat_id"] +'">'+ details["price_cat"][i]["price_cat_desc"] +'</label></div>').appendTo('#price_cat_list');
+                }
+            }
+        });
+      });
+      //load cat
+      /*$('#cat_list').load(function load_cat(){
+          
+          $.ajax({
+              url : "<?php echo site_url('pos/load_cat');?>",
+              method : "GET",
+              success: function(data){
+                  $('#cat_list').html(data);
+              }
+          });
+      });*/
+      
+
   });
 </script>
 </html>
