@@ -87,7 +87,8 @@
                     </div>
                     <div class="panel-body">
                         <p id="item_list">
-                        <button class="btn btn-lg btn-default item-btn" data-toggle="modal" data-target="#itemModal">Item 1</button>
+                        Select a category.
+                        <!-- <button class="btn btn-lg btn-default item-btn" data-toggle="modal" data-target="#itemModal">Item 1</button>
                         <button class="btn btn-lg btn-default item-btn">Item 2</button>
                         <button class="btn btn-lg btn-default item-btn">Item 3</button>
                         <button class="btn btn-lg btn-default item-btn">Item 4</button>
@@ -100,7 +101,7 @@
                         <button class="btn btn-lg btn-default item-btn">Item 11</button>
                         <button class="btn btn-lg btn-default item-btn">Item 12</button>
                         <button class="btn btn-lg btn-default item-btn">Item 12</button>
-                        <button class="btn btn-lg btn-default item-btn">Item 12</button>
+                        <button class="btn btn-lg btn-default item-btn">Item 12</button> -->
                         </p>
                     </div>
                 </div>
@@ -181,18 +182,11 @@
                                 <div class="form-group">
                                     <label class="control-label">Price Group</label>
                                     <div style="margin-left:20px;" id="price_cat_list">
-                                        <div class="radio" hidden>
+                                        <!-- Expected Radio button -->
+                                        <!--<div class="radio" hidden>
                                             <input id="demo-form-radio" class="magic-radio" type="radio" name="price_group" value="1200.00">
                                             <label for="demo-form-radio">Group 1</label>
-                                        </div>
-                                        <div class="radio" hidden>
-                                            <input id="demo-form-radio2" class="magic-radio" type="radio" name="price_group" value="1250.00">
-                                            <label for="demo-form-radio2">Group 2</label>
-                                        </div>
-                                        <div class="radio" hidden>
-                                            <input id="demo-form-radio3" class="magic-radio" type="radio" name="price_group" value="1400.00">
-                                            <label for="demo-form-radio3">Group 3</label>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     
                                 </div>
@@ -214,7 +208,7 @@
             </div>
         </div>
         <div class="modal-footer">
-          <input id="item_id" value="1" hidden>
+          <input id="item_id" value="" hidden>
           <button id="add_cart" type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-cart-plus">&nbsp;&nbsp;</i>Add to Cart</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>

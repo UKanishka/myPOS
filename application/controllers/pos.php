@@ -20,7 +20,8 @@ class Pos extends CI_Controller {
             'id' => $this->input->post('product_id'), 
             'name' => $this->input->post('product_name'), 
             'price' => $this->input->post('product_price'), 
-            'qty' => $this->input->post('quantity'), 
+            'qty' => $this->input->post('quantity'),
+            'options' => array('Price Cat' => $this->input->post('price_cat')) 
         );
         $this->cart->insert($data);
         $count = $this->cart->total_items();
