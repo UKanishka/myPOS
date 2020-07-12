@@ -58,6 +58,7 @@ $route['sell'] = 'pos/sell';
 $route['pos/add_to_cart']['POST'] = 'pos/add_to_cart';
 $route['pos/load_cart']['GET'] = 'pos/load_cart';
 $route['pos/delete_cart']['POST'] = 'pos/delete_cart';
+$route['pos/order']['POST'] = 'pos/order';
 
 $route['pos/load_cat']['GET'] = 'pos/load_cat';
 $route['pos/load_item']['GET'] = 'pos/load_item';

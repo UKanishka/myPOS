@@ -110,4 +110,43 @@ class Pos extends CI_Controller {
         }
         echo json_encode($data);
     }
+
+    public function order(){
+        date_default_timezone_set("Asia/Colombo");
+        $order_id = date("YmdHi");
+
+        $data = array(
+            'order_master_id' => $order_id,
+            'order_master_total' => $this->cart->total(),
+            'order_master_date' => date("Y-m-d H:i:s"),
+            'order_master_emp_id' => 1,
+            'order_master_cus_id' => 1,
+            'order_master_status' => 1,
+            'order_master_paid' => 0
+        );
+
+        $this->db->trans_start();
+        $this->db->insert('tbl_order_master', $data);
+
+        $data_of_cart = array();
+        foreach ($this->cart->contents() as $items){
+            $data_of_cart['order_item_master_id'] = $order_id;
+            $data_of_cart['order_item_item_id'] = $items['id'];
+            $data_of_cart['order_item_qty'] = $items['qty'];
+            $data_of_cart['order_item_total'] = $items['subtotal'];
+            if ($this->cart->has_options($items['rowid']) == TRUE){
+                $data_of_cart['order_item_price_cat'] = $items['options']['Price Cat'];
+            }
+            
+            $this->db->insert('tbl_order_item', $data_of_cart);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE){
+            echo 0;
+        }else{
+            $this->cart->destroy();
+            echo 1;
+        }
+    }
 }

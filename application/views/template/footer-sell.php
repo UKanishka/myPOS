@@ -191,11 +191,53 @@
             console.log(price_value);
             $('#item_price_txt').val(price_value);
             $('#item_price_lbl').text($('#item_price_txt').val());
-        })
+        });
 
         $('#item_price_txt').change(function(){
             $('#item_price_lbl').text($('#item_price_txt').val());
-        })
+        });
+
+        //Order
+        $('#order1').click(function(){
+          //var order_type = $('#order_type').val();
+          //var mob_no  = $('#mob_no').val();
+          //var product_price = $(this).data("productprice");
+          //var quantity      = $('#' + product_id).val();
+            $.ajax({
+              url : "<?php echo site_url('pos/order');?>",
+              method : "POST",
+              //data : {order_type: order_type, mob_no: mob_no},
+              success: function(data){
+                if(data == 1){
+                    $.niftyNoty({
+                        type: 'success',
+                        icon : 'pli-exclamation icon-2x',
+                        message : 'Successfull',
+                        container : 'floating',
+                        timer : 3000
+                    });
+                }
+                else if(data == 0){
+                    $.niftyNoty({
+                        type: 'danger',
+                        icon : 'pli-exclamation icon-2x',
+                        message : 'Failed',
+                        container : 'floating',
+                        timer : 3000
+                    });
+                }
+                else{
+                    $.niftyNoty({
+                        type: 'danger',
+                        icon : 'pli-exclamation icon-2x',
+                        message : 'Internal Error',
+                        container : 'floating',
+                        timer : 6000
+                    });
+                } 
+              }
+            });
+        });
         
       //load cat
       /*$('#cat_list').load(function load_cat(){

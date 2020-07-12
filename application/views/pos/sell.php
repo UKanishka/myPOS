@@ -76,7 +76,7 @@
                         <div class="input-group">
                             <input type="text" placeholder="Item Code" class="form-control input-lg">
                             <span class="input-group-btn">
-                                <button class="btn btn-mint btn-lg" type="button">Search</button>
+                                <button class="btn btn-mint btn-lg" id="search" type="button">Search</button>
                             </span>
                         </div>
                     </div>
